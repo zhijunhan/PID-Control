@@ -3,6 +3,30 @@ Self-Driving Car Engineer Nanodegree Program
 
 ---
 
+## Reflection
+
+### Describe the effect of the P, I, D component of the PID algorithm in their implementation.
+
+- **Proportional**: To produce an output control value that is proportional to the current error value. The proportional response can be adjusted by multiplying the error by a constant Kp, called the proportional gain constant. In this case, the proportional component will make the car steer towards the CTE, and control value is calculated by multiplying the CTE by P gain. Using only the P term will never settle the CTE but will oscilate around it, which will cause unsecure behaviour.
+
+- **Integral**: To produce an output control value that is proportional to both the magnitude of the error and the duration of the error. The integral in a PID controller is the sum of the instantaneous error over time and gives the accumulated offset that should have been corrected previously. In this case, the I component will compensate the systematic bias that is introduced by either the inner system or external disturbance. When the car steering is miscalibrated, and I term will be calculated in a way that multiplys I gain to the accumulated value of the CTE over time.
+
+- **Derivative**: To produce an output control value that is proportional to the derivate of teh process error which is calculated by determining the slope of the error over time. D term will basically detect the trend of the CTE over a specific delta time and counter-steer when the car starts to turn towards the CTE, I term goes smaller as the car approaches the CTE.
+
+### Describe how the final hyperparameters were chosen.
+
+All the parameters has been chosen by iterating some of the following steps, which are the general guideline of tuning a PID controller.
+
+1. Set all gains to zero.
+2. Increase the P gain until the car is generally oscilating around the center line
+3. Increase the D gain until the oscillation is damped
+4. Repeat steps 2 and 3 until the point that increasing the D gain does not stop any oscillations
+5. Set P and D to the last stable values
+6. Increase the I gain until the car is moving mostly along the center line of the road with acceptable number of oscillations
+
+### Result
+
+You can see the result in this [video]()
 ## Dependencies
 
 * cmake >= 3.5
