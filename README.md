@@ -24,6 +24,12 @@ All the parameters has been chosen by iterating some of the following steps, whi
 5. Set P and D to the last stable values
 6. Increase the I gain until the car is moving mostly along the center line of the road with acceptable number of oscillations
 
+The final PID hyper parameters are:
+
+- P = `0.12`
+- I = `0.0001`
+- D = `3.8`
+
 ### Result
 
 You can see the result in this [video]()
